@@ -1,0 +1,267 @@
+/* General Body Styles */
+* {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+}
+
+body {
+    width: 100vw;
+    min-height: 100vh;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(155deg, #7140a4, rgb(255, 131, 131), #0d62f5);
+    background-attachment: fixed;
+    padding: 20px;
+}
+
+.character-container {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+img {
+    height: 150px;
+    width: 150px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+    transition: all 0.3s ease;
+}
+
+.doraemon, .pikachu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.doraemon span, .pikachu span {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 12px 20px;
+    border-radius: 50px;
+    font-weight: bold;
+    color: #333;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+/* Container Styles */
+.container {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    max-width: 420px;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+/* Header Styling */
+h1 {
+    font-size: clamp(1.8rem, 4vw, 2.2rem);
+    color: #333;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background: linear-gradient(to right, #7140a4, #0d62f5);
+    background-clip: text;
+    color: transparent;
+}
+
+/* Board Styles */
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 20px 0;
+    width: 100%;
+    aspect-ratio: 1/1;
+    max-width: 360px;
+}
+
+/* Individual Cells */
+.cell {
+    background-color: #fff;
+    border: 2px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(2rem, 8vw, 3rem);
+    font-weight: bold;
+    color: #333;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    aspect-ratio: 1/1;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.cell:hover {
+    background-color: #f8f8f8;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0,0,0,0.1);
+}
+
+.cell.taken {
+    pointer-events: none;
+}
+
+.cell[data-player="X"] {
+    color: #0d62f5;
+    text-shadow: 0 2px 4px rgba(13, 98, 245, 0.3);
+}
+
+.cell[data-player="O"] {
+    color: #ff5e5e;
+    text-shadow: 0 2px 4px rgba(255, 94, 94, 0.3);
+}
+
+/* Winning message */
+.winning-message {
+    font-size: clamp(1.1rem, 3vw, 1.3rem);
+    margin: 20px 0;
+    font-weight: bold;
+    background: linear-gradient(135deg, #ffffff, #f0f0f0);
+    padding: 12px 20px;
+    border-radius: 50px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+}
+
+/* Restart Button */
+button {
+    padding: 12px 24px;
+    font-size: clamp(1rem, 3vw, 1.1rem);
+    background: linear-gradient(135deg, #16bf3e, #14a836);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    margin-top: 10px;
+    width: 100%;
+    max-width: 200px;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #14a836, #128a2e);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Active player indicators */
+.active-player {
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 10px rgba(255,215,0,0.7));
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .character-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .doraemon, .pikachu {
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-around;
+        order: 2;
+    }
+    
+    .container {
+        order: 1;
+        min-height: auto;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    
+    img {
+        height: 120px;
+        width: 120px;
+    }
+    
+    .board {
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 576px) {
+    body {
+        padding: 10px;
+    }
+    
+    img {
+        height: 80px;
+        width: 80px;
+    }
+    
+    .container {
+        padding: 15px;
+    }
+    
+    .board {
+        max-width: 260px;
+        gap: 8px;
+    }
+    
+    .cell {
+        font-size: 1.8rem;
+    }
+    
+    .winning-message {
+        font-size: 1rem;
+        padding: 10px 15px;
+    }
+    
+    button {
+        padding: 10px 20px;
+    }
+    
+    .doraemon span, .pikachu span {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .board {
+        max-width: 240px;
+    }
+    
+    .cell {
+        font-size: 1.6rem;
+    }
+    
+    h1 {
+        font-size: 1.5rem;
+    }
+}
